@@ -3,13 +3,9 @@
 ### Prerequites
 ***
 
-#### 1 Create a project folder 
+#### 1 Preliminar preparation
 
-Open a new terminal tab and type: 
-```
-mkdir Eng-Ita-Translator 
-cd Eng-Ita-Translator
-```
+Open a new terminal tab and move where you want to do the git clone of the project
 
 #### 2 Clone the project's repo 
 ```
