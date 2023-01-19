@@ -6,4 +6,4 @@ sacrebleu
 torch
 sentencepiece 
 transformers[sentencepiece]
-sacremos
+sacremoses
