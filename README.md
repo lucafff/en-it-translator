@@ -18,7 +18,7 @@ git clone https://github.com/lucafff/en-it-translator.git
 
 #### 3 Install requirements 
 ```
-cd English-Italian-translator-using-transformer
+cd en-it-translator
 pip install -r requirements.txt
 ```
 
