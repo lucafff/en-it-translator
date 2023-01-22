@@ -132,7 +132,8 @@ trainer.save_model()
 
 
 from transformers import MarianMTModel, MarianTokenizer
-src_text = ['If you want go out, you have to finish your homework']
+choice = input("\nWrite your phrase you want the model to convert in italian:\n")
+src_text = [choice]
 
 model_name = 'opus-mt-en-it-finetuned-en-to-it/checkpoint-14000'
 tokenizer = MarianTokenizer.from_pretrained(model_name)
