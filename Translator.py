@@ -142,5 +142,6 @@ print(tokenizer.supported_language_codes)
 
 model = MarianMTModel.from_pretrained(model_name)
 translated = model.generate(**tokenizer(src_text, return_tensors="pt", padding=True))
+print("Traduzione: ")
 [tokenizer.decode(t, skip_special_tokens=True) for t in translated]
 
