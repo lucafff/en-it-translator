@@ -10,11 +10,17 @@ Open a new terminal tab and move where you want to do the git clone of the proje
 #### 2 Clone the project's repo 
 ```
 git clone https://github.com/lucafff/en-it-translator.git
+cd en-it-translator
 ```
 
-#### 3 Install requirements 
+#### 3 Set up virtual env (optional if you want to use your GPU)
 ```
-cd en-it-translator
+python-m venv venvTransformers
+venvTransformers\Scripts\activate
+```
+Choose the next comand depending on your OS https://pytorch.org/get-started/locally/
+#### 3.5 Install requirements
+```
 pip install -r requirements.txt
 ```
 
