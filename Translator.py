@@ -115,24 +115,30 @@ trainer = Seq2SeqTrainer(
 
 
 
-trainer.train()
+import os 
+if (os.path.isdir('opus-mt-en-it-finetuned-en-to-it/checkpoint-14000'))==False:
+    print("\n")
+    print("it doesn't exist any checkpoint of the model\n")
+    trainer.train()
+    
+
+
+    import os
+    for dirname, _, filenames in os.walk('opus-mt-en-it-finetuned-en-to-it'):
+        for filename in filenames:
+            print(os.path.join(dirname, filename))
 
 
 
-import os
-for dirname, _, filenames in os.walk('opus-mt-en-it-finetuned-en-to-it'):
-    for filename in filenames:
-        print(os.path.join(dirname, filename))
 
-
-
-
-trainer.save_model()
+    trainer.save_model()
+else:
+    print("\nthere is already a checkpoint and the train will be skipped\n")
 
 
 
 from transformers import MarianMTModel, MarianTokenizer
-choice = input("\nWrite your phrase you want the model to convert in italian:\n")
+choice = input("\nWrite the phrase you want the model to convert in italian:\n")
 src_text = [choice]
 
 model_name = 'opus-mt-en-it-finetuned-en-to-it/checkpoint-14000'
@@ -143,5 +149,5 @@ print(tokenizer.supported_language_codes)
 model = MarianMTModel.from_pretrained(model_name)
 translated = model.generate(**tokenizer(src_text, return_tensors="pt", padding=True))
 print("Traduzione: ")
-[tokenizer.decode(t, skip_special_tokens=True) for t in translated]
+print([tokenizer.decode(t, skip_special_tokens=True) for t in translated])
 
