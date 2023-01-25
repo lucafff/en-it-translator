@@ -1,5 +1,7 @@
 import os
 os.environ["WANDB_DISABLED"]="true"
+import warnings
+warnings.filterwarnings("ignore")
 import transformers
 print(transformers.__version__)
 
@@ -34,9 +36,12 @@ tokenizer = AutoTokenizer.from_pretrained(model_checkpoint)
 
 model = AutoModelForSeq2SeqLM.from_pretrained(model_checkpoint)
 
-
+print("\n************************************************************************************")
+print("Example tokenization: [Hello, this one sentence!, This is another sentence.]")
 tokenizer(["Hello, this one sentence!", "This is another sentence."])
-
+with tokenizer.as_target_tokenizer():
+    print(tokenizer(["Hi, This is a wonderful project!", "This is another sentence."]))
+print("\n************************************************************************************")
 prefix = ""
 max_input_length = 128
 max_target_length = 128
@@ -117,8 +122,10 @@ trainer = Seq2SeqTrainer(
 
 import os 
 if (os.path.isdir('opus-mt-en-it-finetuned-en-to-it/checkpoint-14000'))==False:
+    print("\n************************************************************************************")
     print("\n")
     print("it doesn't exist any checkpoint of the model\n")
+    print("\n************************************************************************************")
     trainer.train()
     
 
@@ -133,7 +140,9 @@ if (os.path.isdir('opus-mt-en-it-finetuned-en-to-it/checkpoint-14000'))==False:
 
     trainer.save_model()
 else:
-    print("\nthere is already a checkpoint and the train will be skipped\n")
+    print("\n************************************************************************************")
+    print("\nthere is already a checkpoint and the train process will be skipped\n")
+    print("\n************************************************************************************")
 
 
 
@@ -148,6 +157,7 @@ print(tokenizer.supported_language_codes)
 
 model = MarianMTModel.from_pretrained(model_name)
 translated = model.generate(**tokenizer(src_text, return_tensors="pt", padding=True))
-print("Traduzione: ")
+print("\n************************************************************************************")
+print("Translation of the sentence:  "+str(src_text))
 print([tokenizer.decode(t, skip_special_tokens=True) for t in translated])
-
+print("\n************************************************************************************")
